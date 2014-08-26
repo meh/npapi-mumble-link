@@ -1,0 +1,3 @@
+[submodule "vendor/pimpa"]
+	path = vendor/pimpa
+	url = git://github.com/meh/pimpa
