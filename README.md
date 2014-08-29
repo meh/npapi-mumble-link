@@ -87,3 +87,37 @@ A double going towards *up*.
 ### `z`
 
 A double going towards the *front*.
+
+Example
+=======
+To get access to the API you have to add an `<embed>` tag for the plugin to
+work.
+
+```html
+<embed id="mumble" width="0" height="0" type="application/x-mumble-link">
+```
+
+Then you can access the `Live` properties and methods on the `<embed>` tag itself.
+
+```javascript
+function mumble() {
+  return document.getElementById("mumble");
+}
+
+console.log(mumble().identity);
+```
+
+I advice to take snapshots instead of accessing the `Live` itself so as to keep
+consistency between accesses in the same context.
+
+For example if you're running some kind of DOM update in a setInterval:
+
+```javascript
+setInterval(function() {
+  var m = mumble().snapshot();
+
+  console.log(m.identity);
+  console.log([m.avatar.position.x, m.avatar.position.y, m.avatar.position.z]);
+}, 1000);
+
+```
