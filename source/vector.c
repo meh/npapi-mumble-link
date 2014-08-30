@@ -86,3 +86,38 @@ Vector_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 	return true;
 }
+
+bool
+Vector_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
+{
+	Vector* vector = PA_Private(object);
+
+	if (!NPN_IdentifierIsString(name)) {
+		return false;
+	}
+
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
+
+	if (strcmp(string, "x") == 0) {
+		if (!NPVARIANT_IS_DOUBLE(*value)) {
+			return false;
+		}
+
+		*vector->x = NPVARIANT_TO_DOUBLE(*value);
+	}
+	else if (strcmp(string, "y") == 0) {
+		if (!NPVARIANT_IS_DOUBLE(*value)) {
+			return false;
+		}
+
+		*vector->y = NPVARIANT_TO_DOUBLE(*value);
+	}
+	else if (strcmp(string, "z") == 0) {
+		if (!NPVARIANT_IS_DOUBLE(*value)) {
+			return false;
+		}
+
+		*vector->z = NPVARIANT_TO_DOUBLE(*value);
+	}
+	return true;
+}

@@ -21,11 +21,14 @@ bool Vector_HasProperty (NPObject* object, NPIdentifier name);
 
 bool Vector_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result);
 
+bool Vector_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
+
 static NPClass VectorClass = {
 	.allocate    = Vector_Allocate,
 	.deallocate  = Vector_Deallocate,
 	.hasProperty = Vector_HasProperty,
 	.getProperty = Vector_GetProperty,
+	.setProperty = Vector_SetProperty,
 };
 
 #endif
