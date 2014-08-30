@@ -66,7 +66,7 @@ Context_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 	if (NPN_IdentifierIsString(name)) {
 		if (strcmp(NPN_UTF8FromIdentifier(name), "length") == 0) {
-			INT32_TO_NPVARIANT(*context->length, *result);
+			DOUBLE_TO_NPVARIANT(*context->length, *result);
 
 			return true;
 		}
@@ -80,7 +80,7 @@ Context_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		return false;
 	}
 
-	INT32_TO_NPVARIANT(context->data[index], *result);
+	DOUBLE_TO_NPVARIANT(context->data[index], *result);
 
 	return true;
 }
@@ -92,15 +92,15 @@ Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value
 
 	if (NPN_IdentifierIsString(name)) {
 		if (strcmp(NPN_UTF8FromIdentifier(name), "length") == 0) {
-			if (!NPVARIANT_IS_INT32(*value)) {
+			if (!NPVARIANT_IS_DOUBLE(*value)) {
 				return false;
 			}
 
-			if (NPVARIANT_TO_INT32(*value) > 255) {
+			if (NPVARIANT_TO_DOUBLE(*value) > 255) {
 				return false;
 			}
 
-			*context->length = NPVARIANT_TO_INT32(*value);
+			*context->length = NPVARIANT_TO_DOUBLE(*value);
 
 			return true;
 		}
@@ -114,15 +114,15 @@ Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value
 		return false;
 	}
 
-	if (!NPVARIANT_IS_INT32(*value)) {
+	if (!NPVARIANT_IS_DOUBLE(*value)) {
 		return false;
 	}
 
-	if (NPVARIANT_TO_INT32(*value) > 255) {
+	if (NPVARIANT_TO_DOUBLE(*value) > 255) {
 		return false;
 	}
 
-	context->data[index] = NPVARIANT_TO_INT32(*value);
+	context->data[index] = NPVARIANT_TO_DOUBLE(*value);
 
 	return true;
 }
