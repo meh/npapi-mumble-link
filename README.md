@@ -97,6 +97,12 @@ work.
 <embed id="mumble" width="0" height="0" type="application/x-mumble-link">
 ```
 
+In case it's not working, try adding the following code as early as possible.
+
+```javascript
+navigator.plugins.refresh(true);
+```
+
 Then you can access the `Live` properties and methods on the `<embed>` tag itself.
 
 ```javascript
@@ -119,5 +125,4 @@ setInterval(function() {
   console.log(m.identity);
   console.log([m.avatar.position.x, m.avatar.position.y, m.avatar.position.z]);
 }, 1000);
-
 ```
