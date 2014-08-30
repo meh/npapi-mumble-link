@@ -37,13 +37,27 @@
 	}
 #endif
 
-char*
-_string (wchar_t* string, size_t size)
+static void
+_string_out (NPVariant* out, wchar_t* string, size_t size)
 {
 	char* result = NPN_MemAlloc(size * sizeof(wchar_t));
 	wcstombs(result, string, size * sizeof(wchar_t));
 
-	return result;
+	STRINGZ_TO_NPVARIANT(result, *out);
+}
+
+static void
+_string_in (wchar_t* out, const NPVariant* value, size_t size)
+{
+	NPString string = NPVARIANT_TO_STRING(*value);
+	NPUTF8* chars   = NPN_MemAlloc(string.UTF8Length + 1);
+
+	memcpy(chars, string.UTF8Characters, string.UTF8Length);
+	chars[string.UTF8Length] = 0;
+
+	mbstowcs(out, chars, size);
+
+	NPN_MemFree(chars);
 }
 
 bool
@@ -92,7 +106,7 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		                    *result);
 	}
 	else if (strcmp(string, "name") == 0) {
-		STRINGZ_TO_NPVARIANT(_string(mumble->name, 256), *result);
+		_string_out(result, mumble->name, 256);
 	}
 	else if (strcmp(string, "camera") == 0) {
 		OBJECT_TO_NPVARIANT(Space_Create(PA_Plugin(object),
@@ -102,7 +116,7 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		                    *result);
 	}
 	else if (strcmp(string, "identity") == 0) {
-		STRINGZ_TO_NPVARIANT(_string(mumble->identity, 256), *result);
+		_string_out(result, mumble->identity, 256);
 	}
 	else if (strcmp(string, "context") == 0) {
 		OBJECT_TO_NPVARIANT(Context_Create(PA_Plugin(object),
@@ -111,7 +125,7 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		                    *result);
 	}
 	else if (strcmp(string, "description") == 0) {
-		STRINGZ_TO_NPVARIANT(_string(mumble->description, 2048), *result);
+		_string_out(result, mumble->description, 2048);
 	}
 	else {
 		return false;
@@ -150,21 +164,21 @@ Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
 			return false;
 		}
 
-		mbstowcs(mumble->name, NPVARIANT_TO_STRING(*value).UTF8Characters, 256);
+		_string_in(mumble->name, value, 256);
 	}
 	else if (strcmp(string, "identity") == 0) {
 		if (!NPVARIANT_IS_STRING(*value)) {
 			return false;
 		}
 
-		mbstowcs(mumble->identity, NPVARIANT_TO_STRING(*value).UTF8Characters, 256);
+		_string_in(mumble->identity, value, 256);
 	}
 	else if (strcmp(string, "description") == 0) {
 		if (!NPVARIANT_IS_STRING(*value)) {
 			return false;
 		}
 
-		mbstowcs(mumble->description, NPVARIANT_TO_STRING(*value).UTF8Characters, 2048);
+		_string_in(mumble->description, value, 2048);
 	}
 	else {
 		return false;
