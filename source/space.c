@@ -81,6 +81,9 @@ Space_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 	else if (strcmp(string, "front") == 0) {
 		OBJECT_TO_NPVARIANT(Vector_Create(PA_Plugin(object), space->top), *result);
 	}
+	else {
+		return false;
+	}
 
 	return true;
 }
