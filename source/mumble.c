@@ -79,10 +79,10 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	if (strcmp(string, "version") == 0) {
-		INT32_TO_NPVARIANT(mumble->version, *result);
+		DOUBLE_TO_NPVARIANT(mumble->version, *result);
 	}
 	else if (strcmp(string, "tick") == 0) {
-		INT32_TO_NPVARIANT(mumble->tick, *result);
+		DOUBLE_TO_NPVARIANT(mumble->tick, *result);
 	}
 	else if (strcmp(string, "avatar") == 0) {
 		OBJECT_TO_NPVARIANT(Space_Create(PA_Plugin(object),
@@ -132,18 +132,18 @@ Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
 	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	if (strcmp(string, "version") == 0) {
-		if (!NPVARIANT_IS_INT32(*value)) {
+		if (!NPVARIANT_IS_DOUBLE(*value)) {
 			return false;
 		}
 
-		mumble->version = NPVARIANT_TO_INT32(*value);
+		mumble->version = NPVARIANT_TO_DOUBLE(*value);
 	}
 	else if (strcmp(string, "tick") == 0) {
-		if (!NPVARIANT_IS_INT32(*value)) {
+		if (!NPVARIANT_IS_DOUBLE(*value)) {
 			return false;
 		}
 
-		mumble->tick = NPVARIANT_TO_INT32(*value);
+		mumble->tick = NPVARIANT_TO_DOUBLE(*value);
 	}
 	else if (strcmp(string, "name") == 0) {
 		if (!NPVARIANT_IS_STRING(*value)) {
