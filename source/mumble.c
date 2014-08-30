@@ -113,6 +113,9 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 	else if (strcmp(string, "description") == 0) {
 		STRINGZ_TO_NPVARIANT(_string(mumble->description, 2048), *result);
 	}
+	else {
+		return false;
+	}
 
 	return true;
 }
