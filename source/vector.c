@@ -53,7 +53,7 @@ Vector_HasProperty (NPObject* object, NPIdentifier name)
 		return false;
 	}
 
-	char* string = NPN_UTF8FromIdentifier(name);
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	return strcmp(string, "x") == 0 ||
 	       strcmp(string, "y") == 0 ||
@@ -69,7 +69,7 @@ Vector_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		return false;
 	}
 
-	char* string = NPN_UTF8FromIdentifier(name);
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	if (strcmp(string, "x") == 0) {
 		DOUBLE_TO_NPVARIANT(*vector->x, *result);
