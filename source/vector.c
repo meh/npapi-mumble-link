@@ -80,6 +80,9 @@ Vector_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 	else if (strcmp(string, "z") == 0) {
 		DOUBLE_TO_NPVARIANT(*vector->z, *result);
 	}
+	else {
+		return false;
+	}
 
 	return true;
 }
