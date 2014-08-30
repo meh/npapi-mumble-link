@@ -15,9 +15,10 @@
 NPObject* Snapshot_Allocate (NPP plugin, NPClass* klass);
 
 static NPClass SnapshotClass = {
-	.allocate       = Snapshot_Allocate,
-	.hasProperty    = Mumble_HasProperty,
-	.getProperty    = Mumble_GetProperty,
+	.allocate    = Snapshot_Allocate,
+	.hasProperty = Mumble_HasProperty,
+	.getProperty = Mumble_GetProperty,
+	.setProperty = Mumble_SetProperty,
 };
 
 #endif

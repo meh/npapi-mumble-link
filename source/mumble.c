@@ -116,3 +116,56 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 	return true;
 }
+
+bool
+Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
+{
+	Mumble* mumble = PA_Private(object);
+
+	if (!NPN_IdentifierIsString(name)) {
+		return false;
+	}
+
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
+
+	if (strcmp(string, "version") == 0) {
+		if (!NPVARIANT_IS_INT32(*value)) {
+			return false;
+		}
+
+		mumble->version = NPVARIANT_TO_INT32(*value);
+	}
+	else if (strcmp(string, "tick") == 0) {
+		if (!NPVARIANT_IS_INT32(*value)) {
+			return false;
+		}
+
+		mumble->tick = NPVARIANT_TO_INT32(*value);
+	}
+	else if (strcmp(string, "name") == 0) {
+		if (!NPVARIANT_IS_STRING(*value)) {
+			return false;
+		}
+
+		mbstowcs(mumble->name, NPVARIANT_TO_STRING(*value).UTF8Characters, 256);
+	}
+	else if (strcmp(string, "identity") == 0) {
+		if (!NPVARIANT_IS_STRING(*value)) {
+			return false;
+		}
+
+		mbstowcs(mumble->identity, NPVARIANT_TO_STRING(*value).UTF8Characters, 256);
+	}
+	else if (strcmp(string, "description") == 0) {
+		if (!NPVARIANT_IS_STRING(*value)) {
+			return false;
+		}
+
+		mbstowcs(mumble->description, NPVARIANT_TO_STRING(*value).UTF8Characters, 2048);
+	}
+	else {
+		return false;
+	}
+
+	return true;
+}

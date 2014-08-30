@@ -56,4 +56,6 @@ bool Mumble_HasProperty (NPObject* object, NPIdentifier name);
 
 bool Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result);
 
+bool Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
+
 #endif

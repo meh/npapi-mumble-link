@@ -20,11 +20,12 @@ bool Live_HasMethod (NPObject* object, NPIdentifier name);
 bool Live_Invoke (NPObject* object, NPIdentifier name, const NPVariant* argv, uint32_t argc, NPVariant* result);
 
 static NPClass LiveClass = {
-	.allocate       = Live_Allocate,
-	.hasMethod      = Live_HasMethod,
-	.invoke         = Live_Invoke,
-	.hasProperty    = Mumble_HasProperty,
-	.getProperty    = Mumble_GetProperty,
+	.allocate    = Live_Allocate,
+	.hasMethod   = Live_HasMethod,
+	.invoke      = Live_Invoke,
+	.hasProperty = Mumble_HasProperty,
+	.getProperty = Mumble_GetProperty,
+	.setProperty = Mumble_SetProperty,
 };
 
 #endif
