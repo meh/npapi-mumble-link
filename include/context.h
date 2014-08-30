@@ -21,11 +21,14 @@ bool Context_HasProperty (NPObject* object, NPIdentifier name);
 
 bool Context_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result);
 
+bool Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
+
 static NPClass ContextClass = {
 	.allocate    = Context_Allocate,
 	.deallocate  = Context_Deallocate,
 	.hasProperty = Context_HasProperty,
 	.getProperty = Context_GetProperty,
+	.setProperty = Context_SetProperty,
 };
 
 #endif

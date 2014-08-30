@@ -84,3 +84,45 @@ Context_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 	return true;
 }
+
+bool
+Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
+{
+	Context* context = PA_Private(object);
+
+	if (NPN_IdentifierIsString(name)) {
+		if (strcmp(NPN_UTF8FromIdentifier(name), "length") == 0) {
+			if (!NPVARIANT_IS_INT32(*value)) {
+				return false;
+			}
+
+			if (NPVARIANT_TO_INT32(*value) > 255) {
+				return false;
+			}
+
+			*context->length = NPVARIANT_TO_INT32(*value);
+
+			return true;
+		}
+	
+		return false;
+	}
+
+	uint32_t index = NPN_IntFromIdentifier(name);
+
+	if (index >= *context->length) {
+		return false;
+	}
+
+	if (!NPVARIANT_IS_INT32(*value)) {
+		return false;
+	}
+
+	if (NPVARIANT_TO_INT32(*value) > 255) {
+		return false;
+	}
+
+	context->data[index] = NPVARIANT_TO_INT32(*value);
+
+	return true;
+}
