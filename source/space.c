@@ -54,7 +54,7 @@ Space_HasProperty (NPObject* object, NPIdentifier name)
 		return false;
 	}
 
-	char* string = NPN_UTF8FromIdentifier(name);
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	return strcmp(string, "position") == 0 ||
 	       strcmp(string, "front")    == 0 ||
@@ -70,7 +70,7 @@ Space_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 		return false;
 	}
 
-	char* string = NPN_UTF8FromIdentifier(name);
+	NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
 	if (strcmp(string, "position") == 0) {
 		OBJECT_TO_NPVARIANT(Vector_Create(PA_Plugin(object), space->position), *result);
