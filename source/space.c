@@ -87,3 +87,18 @@ Space_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 	return true;
 }
+
+bool
+Space_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length)
+{
+	(void) object;
+
+	*length = 3;
+	*names  = NPN_MemAlloc(sizeof(NPIdentifier) * *length);
+
+	(*names)[0] = NPN_GetStringIdentifier("position");
+	(*names)[1] = NPN_GetStringIdentifier("front");
+	(*names)[2] = NPN_GetStringIdentifier("top");
+
+	return true;
+}

@@ -21,12 +21,14 @@ bool Space_HasProperty (NPObject* object, NPIdentifier name);
 
 bool Space_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result);
 
+bool Space_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length);
+
 static NPClass SpaceClass = {
 	.allocate    = Space_Allocate,
 	.deallocate  = Space_Deallocate,
 	.hasProperty = Space_HasProperty,
 	.getProperty = Space_GetProperty,
+	.enumerate   = Space_Enumerate,
 };
-
 
 #endif
