@@ -126,3 +126,8 @@ setInterval(function() {
   console.log([m.avatar.position.x, m.avatar.position.y, m.avatar.position.z]);
 }, 1000);
 ```
+
+Also make sure the `<embed>` tag is not hidden, styling it to be `visibility:
+hidden` or `display: none` will cause the browser to unload the plugin.
+
+As an alternative you can use `position: absolute; top: -5px; left: -5px`.
