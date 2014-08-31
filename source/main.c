@@ -19,7 +19,7 @@ PA_Metadata (void)
 	static PAMetadata meta = {
 		.name        = "Mumble Link",
 		.description = "Mumble Link interface plugin.",
-		.version     = "1.0.0.1",
+		.version     = "1.0.0.2",
 		.mime        = "application/x-mumble-link:mbl:Mumble Link",
 	};
 
