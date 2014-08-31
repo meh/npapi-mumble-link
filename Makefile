@@ -1,7 +1,7 @@
 CC      = i686-pc-mingw32-gcc
 AR      = i686-pc-mingw32-ar
 WINDRES = i686-pc-mingw32-windres
-CFLAGS  = -Wall -Iinclude -Ivendor/pimpa/include -DXP_WIN=1 -ggdb
+CFLAGS  = -std=c11 -Wall -Iinclude -Ivendor/pimpa/include -DXP_WIN=1 -ggdb
 LDFLAGS = -Wl,--enable-stdcall-fixup
 
 LIBRARY  = npMumbleLink.dll
