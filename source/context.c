@@ -126,3 +126,20 @@ Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value
 
 	return true;
 }
+
+bool
+Context_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length)
+{
+	Context* context = PA_Private(object);
+
+	*length = *context->length + 1;
+	*names  = NPN_MemAlloc(sizeof(NPIdentifier) * *length);
+
+	(*names)[0] = NPN_GetStringIdentifier("length");
+
+	for (size_t i = 0; i < *length; i++) {
+		(*names)[i + 1] = NPN_GetIntIdentifier(i);
+	}
+
+	return true;
+}

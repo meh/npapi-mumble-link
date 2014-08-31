@@ -23,12 +23,15 @@ bool Context_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result
 
 bool Context_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
 
+bool Context_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length);
+
 static NPClass ContextClass = {
 	.allocate    = Context_Allocate,
 	.deallocate  = Context_Deallocate,
 	.hasProperty = Context_HasProperty,
 	.getProperty = Context_GetProperty,
 	.setProperty = Context_SetProperty,
+	.enumerate   = Context_Enumerate,
 };
 
 #endif
