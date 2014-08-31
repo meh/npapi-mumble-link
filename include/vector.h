@@ -23,12 +23,15 @@ bool Vector_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 
 bool Vector_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
 
+bool Vector_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length);
+
 static NPClass VectorClass = {
 	.allocate    = Vector_Allocate,
 	.deallocate  = Vector_Deallocate,
 	.hasProperty = Vector_HasProperty,
 	.getProperty = Vector_GetProperty,
 	.setProperty = Vector_SetProperty,
+	.enumerate   = Vector_Enumerate,
 };
 
 #endif
