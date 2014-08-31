@@ -186,3 +186,23 @@ Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value)
 
 	return true;
 }
+
+bool
+Mumble_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length)
+{
+	(void) object;
+
+	*length = 8;
+	*names  = NPN_MemAlloc(sizeof(NPIdentifier) * *length);
+
+	(*names)[0] = NPN_GetStringIdentifier("version");
+	(*names)[1] = NPN_GetStringIdentifier("tick");
+	(*names)[2] = NPN_GetStringIdentifier("avatar");
+	(*names)[3] = NPN_GetStringIdentifier("name");
+	(*names)[4] = NPN_GetStringIdentifier("camera");
+	(*names)[5] = NPN_GetStringIdentifier("identity");
+	(*names)[6] = NPN_GetStringIdentifier("context");
+	(*names)[7] = NPN_GetStringIdentifier("description");
+
+	return true;
+}

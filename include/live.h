@@ -26,6 +26,7 @@ static NPClass LiveClass = {
 	.hasProperty = Mumble_HasProperty,
 	.getProperty = Mumble_GetProperty,
 	.setProperty = Mumble_SetProperty,
+	.enumerate   = Mumble_Enumerate,
 };
 
 #endif

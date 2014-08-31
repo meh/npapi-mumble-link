@@ -41,7 +41,6 @@ typedef struct Mumble {
 	wchar_t description[2048];
 } Mumble;
 
-
 #if defined(XP_WIN)
 	#include <Windows.h>
 	
@@ -57,5 +56,7 @@ bool Mumble_HasProperty (NPObject* object, NPIdentifier name);
 bool Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result);
 
 bool Mumble_SetProperty (NPObject* object, NPIdentifier name, const NPVariant* value);
+
+bool Mumble_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length);
 
 #endif
