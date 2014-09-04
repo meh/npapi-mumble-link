@@ -24,9 +24,7 @@ Live_HasMethod (NPObject* object, NPIdentifier name)
 	if (NPN_IdentifierIsString(name)) {
 		NPUTF8* string = NPN_UTF8FromIdentifier(name);
 
-		if (strcmp(string, "snapshot") == 0) {
-			return true;
-		}
+		return strcmp(string, "snapshot") == 0;
 	}
 
 	return false;
