@@ -137,8 +137,8 @@ Context_Enumerate (NPObject* object, NPIdentifier** names, uint32_t* length)
 
 	(*names)[0] = NPN_GetStringIdentifier("length");
 
-	for (size_t i = 0; i < *length; i++) {
-		(*names)[i + 1] = NPN_GetIntIdentifier(i);
+	for (size_t i = 1; i < *length; i++) {
+		(*names)[i] = NPN_GetIntIdentifier(i - 1);
 	}
 
 	return true;
