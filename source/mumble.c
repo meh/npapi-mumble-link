@@ -121,7 +121,7 @@ Mumble_GetProperty (NPObject* object, NPIdentifier name, NPVariant* result)
 	else if (strcmp(string, "context") == 0) {
 		OBJECT_TO_NPVARIANT(Context_Create(PA_Plugin(object),
 		                                   &mumble->context.length,
-		                                   mumble->context.value),
+		                                   mumble->context.data),
 		                    *result);
 	}
 	else if (strcmp(string, "description") == 0) {

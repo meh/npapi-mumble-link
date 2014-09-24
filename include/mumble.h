@@ -35,7 +35,7 @@ typedef struct Mumble {
 
 	struct {
 		uint32_t      length;
-		unsigned char value[256];
+		unsigned char data[256];
 	} context;
 
 	wchar_t description[2048];
