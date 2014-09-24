@@ -5,8 +5,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 // DLL version information.
 VS_VERSION_INFO    VERSIONINFO
-FILEVERSION        1,0,0,2
-PRODUCTVERSION     1,0,0,2
+FILEVERSION        1,0,0,3
+PRODUCTVERSION     1,0,0,3
 FILEFLAGSMASK      0x3fL
 #ifdef _DEBUG
   FILEFLAGS        VS_FF_DEBUG | VS_FF_PRERELEASE
@@ -24,13 +24,13 @@ BEGIN
       VALUE "CompanyName", "meh."
       VALUE "FileDescription", "Mumble Link interface"
       VALUE "FileOpenName", "npMumbleLink"
-      VALUE "FileVersion", "1.0.0.2"
+      VALUE "FileVersion", "1.0.0.3"
       VALUE "InternalName", "npMumbleLink"
       VALUE "LegalCopyright", "Copyright © 2014"
       VALUE "MIMEType", "application/x-mumble-link"
       VALUE "OriginalFilename", "npMumbleLink.dll"
       VALUE "ProductName", "Mumble Link"
-      VALUE "ProductVersion", "1.0.0.2"
+      VALUE "ProductVersion", "1.0.0.3"
     END
   END
   BLOCK "VarFileInfo"
